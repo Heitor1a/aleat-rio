@@ -1,0 +1,279 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: #0f172a;
+  color: #f8fafc;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 440px;
+  background-color: #1e293b;
+  border: 2px solid #334155;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+}
+
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.badge {
+  display: inline-block;
+  background-color: #312e81;
+  color: #a5b4fc;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+}
+
+header h1 {
+  font-size: 26px;
+  color: #38bdf8;
+  margin-bottom: 6px;
+}
+
+header p {
+  font-size: 14px;
+  color: #cbd5e1;
+}
+
+/* Esconde todos os inputs de controle */
+.hidden-input {
+  display: none;
+}
+
+/* Barra de Controles (Sorteios + Reiniciar) */
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.modes {
+  display: flex;
+  gap: 6px;
+}
+
+.mode-btn {
+  background-color: #0f172a;
+  border: 1px solid #475569;
+  color: #94a3b8;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.mode-btn:hover {
+  border-color: #38bdf8;
+  color: #ffffff;
+}
+
+/* Destaca o botão do sorteio ativo */
+#mode-a:checked ~ .controls .btn-a,
+#mode-b:checked ~ .controls .btn-b,
+#mode-c:checked ~ .controls .btn-c {
+  background-color: #0284c7;
+  border-color: #38bdf8;
+  color: #ffffff;
+}
+
+.reset-btn {
+  background-color: #334155;
+  border: 1px solid #475569;
+  color: #f8fafc;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.reset-btn:hover {
+  background-color: #475569;
+}
+
+/* Grade 3x3 das Cartas */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.card {
+  height: 92px;
+  background-color: #0f172a;
+  border: 2px solid #4f46e5;
+  border-radius: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 26px;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.15s ease, background-color 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  border-color: #38bdf8;
+}
+
+.card .front {
+  color: #818cf8;
+}
+
+.card .back {
+  display: none;
+}
+
+/* Quando a carta é clicada (checkbox marcado), esconde o "?" */
+#c1:checked ~ .grid .card-1 .front,
+#c2:checked ~ .grid .card-2 .front,
+#c3:checked ~ .grid .card-3 .front,
+#c4:checked ~ .grid .card-4 .front,
+#c5:checked ~ .grid .card-5 .front,
+#c6:checked ~ .grid .card-6 .front,
+#c7:checked ~ .grid .card-7 .front,
+#c8:checked ~ .grid .card-8 .front,
+#c9:checked ~ .grid .card-9 .front {
+  display: none;
+}
+
+/* Mostra o valor correspondente ao Sorteio 1, 2 ou 3 */
+#mode-a:checked ~ #c1:checked ~ .grid .card-1 .val-a,
+#mode-a:checked ~ #c2:checked ~ .grid .card-2 .val-a,
+#mode-a:checked ~ #c3:checked ~ .grid .card-3 .val-a,
+#mode-a:checked ~ #c4:checked ~ .grid .card-4 .val-a,
+#mode-a:checked ~ #c5:checked ~ .grid .card-5 .val-a,
+#mode-a:checked ~ #c6:checked ~ .grid .card-6 .val-a,
+#mode-a:checked ~ #c7:checked ~ .grid .card-7 .val-a,
+#mode-a:checked ~ #c8:checked ~ .grid .card-8 .val-a,
+#mode-a:checked ~ #c9:checked ~ .grid .card-9 .val-a,
+
+#mode-b:checked ~ #c1:checked ~ .grid .card-1 .val-b,
+#mode-b:checked ~ #c2:checked ~ .grid .card-2 .val-b,
+#mode-b:checked ~ #c3:checked ~ .grid .card-3 .val-b,
+#mode-b:checked ~ #c4:checked ~ .grid .card-4 .val-b,
+#mode-b:checked ~ #c5:checked ~ .grid .card-5 .val-b,
+#mode-b:checked ~ #c6:checked ~ .grid .card-6 .val-b,
+#mode-b:checked ~ #c7:checked ~ .grid .card-7 .val-b,
+#mode-b:checked ~ #c8:checked ~ .grid .card-8 .val-b,
+#mode-b:checked ~ #c9:checked ~ .grid .card-9 .val-b,
+
+#mode-c:checked ~ #c1:checked ~ .grid .card-1 .val-c,
+#mode-c:checked ~ #c2:checked ~ .grid .card-2 .val-c,
+#mode-c:checked ~ #c3:checked ~ .grid .card-3 .val-c,
+#mode-c:checked ~ #c4:checked ~ .grid .card-4 .val-c,
+#mode-c:checked ~ #c5:checked ~ .grid .card-5 .val-c,
+#mode-c:checked ~ #c6:checked ~ .grid .card-6 .val-c,
+#mode-c:checked ~ #c7:checked ~ .grid .card-7 .val-c,
+#mode-c:checked ~ #c8:checked ~ .grid .card-8 .val-c,
+#mode-c:checked ~ #c9:checked ~ .grid .card-9 .val-c {
+  display: inline-block;
+  color: #f8fafc;
+}
+
+/* Estilo das cartas viradas */
+#c1:checked ~ .grid .card-1,
+#c2:checked ~ .grid .card-2,
+#c3:checked ~ .grid .card-3,
+#c4:checked ~ .grid .card-4,
+#c5:checked ~ .grid .card-5,
+#c6:checked ~ .grid .card-6,
+#c7:checked ~ .grid .card-7,
+#c8:checked ~ .grid .card-8,
+#c9:checked ~ .grid .card-9 {
+  background-color: #334155;
+  border-color: #64748b;
+  cursor: default;
+}
+
+/* Destaque Verde para os Números Dourados (Estrela) */
+#mode-a:checked ~ #c2:checked ~ .grid .card-2,
+#mode-a:checked ~ #c4:checked ~ .grid .card-4,
+#mode-a:checked ~ #c9:checked ~ .grid .card-9,
+#mode-b:checked ~ #c1:checked ~ .grid .card-1,
+#mode-b:checked ~ #c6:checked ~ .grid .card-6,
+#mode-b:checked ~ #c8:checked ~ .grid .card-8,
+#mode-c:checked ~ #c3:checked ~ .grid .card-3,
+#mode-c:checked ~ #c5:checked ~ .grid .card-5,
+#mode-c:checked ~ #c9:checked ~ .grid .card-9 {
+  background-color: #065f46;
+  border-color: #10b981;
+}
+
+/* Destaque Vermelho para as Bombas */
+#mode-a:checked ~ #c1:checked ~ .grid .card-1,
+#mode-a:checked ~ #c6:checked ~ .grid .card-6,
+#mode-b:checked ~ #c3:checked ~ .grid .card-3,
+#mode-b:checked ~ #c5:checked ~ .grid .card-5,
+#mode-c:checked ~ #c2:checked ~ .grid .card-2,
+#mode-c:checked ~ #c7:checked ~ .grid .card-7 {
+  background-color: #7f1d1d;
+  border-color: #ef4444;
+}
+
+/* Alertas de Vitória e Derrota */
+.alert {
+  display: none;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 14px;
+}
+
+/* Mostra derrota se clicar nas bombas de cada sorteio */
+#mode-a:checked ~ #c1:checked ~ .boom-a,
+#mode-a:checked ~ #c6:checked ~ .boom-a,
+#mode-b:checked ~ #c3:checked ~ .boom-b,
+#mode-b:checked ~ #c5:checked ~ .boom-b,
+#mode-c:checked ~ #c2:checked ~ .boom-c,
+#mode-c:checked ~ #c7:checked ~ .boom-c {
+  display: block;
+  background-color: #991b1b;
+  color: #fecaca;
+  border: 1px solid #f87171;
+}
+
+/* Mostra vitória quando encontrar os 3 números dourados */
+#mode-a:checked ~ #c2:checked ~ #c4:checked ~ #c9:checked ~ .win-a,
+#mode-b:checked ~ #c1:checked ~ #c6:checked ~ #c8:checked ~ .win-b,
+#mode-c:checked ~ #c3:checked ~ #c5:checked ~ #c9:checked ~ .win-c {
+  display: block;
+  background-color: #065f46;
+  color: #a7f3d0;
+  border: 1px solid #34d399;
+}
+
+.legend {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #94a3b8;
+  border-top: 1px solid #334155;
+  padding-top: 12px;
+}

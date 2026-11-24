@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Caça aos Números - HTML & CSS</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <span class="badge">100% HTML + CSS</span>
+      <h1>Caça aos Números</h1>
+      <p>Encontre os <strong>3 números dourados</strong> escondidos sem acertar as bombas!</p>
+    </header>
+
+    <!-- FORMULÁRIO PERMITE RESETAR O JOGO SEM JAVASCRIPT -->
+    <form class="game-box">
+
+      <!-- Seletor de Cartela (Muda a posição aleatória dos números) -->
+      <input type="radio" name="cartela" id="mode-a" class="hidden-input" checked />
+      <input type="radio" name="cartela" id="mode-b" class="hidden-input" />
+      <input type="radio" name="cartela" id="mode-c" class="hidden-input" />
+
+      <div class="controls">
+        <div class="modes">
+          <label for="mode-a" class="mode-btn btn-a">🎲 Sorteio 1</label>
+          <label for="mode-b" class="mode-btn btn-b">🎲 Sorteio 2</label>
+          <label for="mode-c" class="mode-btn btn-c">🎲 Sorteio 3</label>
+        </div>
+        <button type="reset" class="reset-btn">↻ Reiniciar</button>
+      </div>
+
+      <!-- Checkboxes que guardam quais cartas foram viradas -->
+      <input type="checkbox" id="c1" class="hidden-input" />
+      <input type="checkbox" id="c2" class="hidden-input" />
+      <input type="checkbox" id="c3" class="hidden-input" />
+      <input type="checkbox" id="c4" class="hidden-input" />
+      <input type="checkbox" id="c5" class="hidden-input" />
+      <input type="checkbox" id="c6" class="hidden-input" />
+      <input type="checkbox" id="c7" class="hidden-input" />
+      <input type="checkbox" id="c8" class="hidden-input" />
+      <input type="checkbox" id="c9" class="hidden-input" />
+
+      <!-- TABULEIRO 3x3 -->
+      <div class="grid">
+        <!-- Carta 1 -->
+        <label for="c1" class="card card-1">
+          <span class="front">?</span>
+          <span class="back val-a">💣</span>
+          <span class="back val-b">7 ⭐</span>
+          <span class="back val-c">4</span>
+        </label>
+
+        <!-- Carta 2 -->
+        <label for="c2" class="card card-2">
+          <span class="front">?</span>
+          <span class="back val-a">9 ⭐</span>
+          <span class="back val-b">2</span>
+          <span class="back val-c">💣</span>
+        </label>
+
+        <!-- Carta 3 -->
+        <label for="c3" class="card card-3">
+          <span class="front">?</span>
+          <span class="back val-a">3</span>
+          <span class="back val-b">💣</span>
+          <span class="back val-c">8 ⭐</span>
+        </label>
+
+        <!-- Carta 4 -->
+        <label for="c4" class="card card-4">
+          <span class="front">?</span>
+          <span class="back val-a">5 ⭐</span>
+          <span class="back val-b">6</span>
+          <span class="back val-c">1</span>
+        </label>
+
+        <!-- Carta 5 -->
+        <label for="c5" class="card card-5">
+          <span class="front">?</span>
+          <span class="back val-a">1</span>
+          <span class="back val-b">💣</span>
+          <span class="back val-c">9 ⭐</span>
+        </label>
+
+        <!-- Carta 6 -->
+        <label for="c6" class="card card-6">
+          <span class="front">?</span>
+          <span class="back val-a">💣</span>
+          <span class="back val-b">8 ⭐</span>
+          <span class="back val-c">5</span>
+        </label>
+
+        <!-- Carta 7 -->
+        <label for="c7" class="card card-7">
+          <span class="front">?</span>
+          <span class="back val-a">2</span>
+          <span class="back val-b">4</span>
+          <span class="back val-c">💣</span>
+        </label>
+
+        <!-- Carta 8 -->
+        <label for="c8" class="card card-8">
+          <span class="front">?</span>
+          <span class="back val-a">6</span>
+          <span class="back val-b">3 ⭐</span>
+          <span class="back val-c">2</span>
+        </label>
+
+        <!-- Carta 9 -->
+        <label for="c9" class="card card-9">
+          <span class="front">?</span>
+          <span class="back val-a">8 ⭐</span>
+          <span class="back val-b">1</span>
+          <span class="back val-c">7 ⭐</span>
+        </label>
+      </div>
+
+      <!-- MENSAGEM DE DERROTA AUTOMÁTICA AO CLICAR NA BOMBA -->
+      <div class="alert boom-a">💥 CABUM! Você acertou uma bomba no Sorteio 1! Clique em Reiniciar.</div>
+      <div class="alert boom-b">💥 CABUM! Você acertou uma bomba no Sorteio 2! Clique em Reiniciar.</div>
+      <div class="alert boom-c">💥 CABUM! Você acertou uma bomba no Sorteio 3! Clique em Reiniciar.</div>
+
+      <!-- MENSAGEM DE VITÓRIA AUTOMÁTICA AO ACHAR OS 3 NÚMEROS DOURADOS -->
+      <div class="alert win-a">🏆 PARABÉNS! Você encontrou os 3 números dourados (9, 5 e 8)!</div>
+      <div class="alert win-b">🏆 PARABÉNS! Você encontrou os 3 números dourados (7, 8 e 3)!</div>
+      <div class="alert win-c">🏆 PARABÉNS! Você encontrou os 3 números dourados (8, 9 e 7)!</div>
+
+      <div class="legend">
+        <span>⭐ = Número Dourado (Objetivo)</span>
+        <span>💣 = Bomba (Fim de jogo)</span>
+      </div>
+
+    </form>
+  </div>
+
+</body>
+</html>
